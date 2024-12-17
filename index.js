@@ -19,7 +19,6 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
 connectMongoDB();
-const PORT = 8000;
 
 app.use('/url',showLoginUserHistoryOnly,require('./routes/urlRoute'));
 app.use('/', require('./routes/staticRouter'));
@@ -39,6 +38,6 @@ app.get('/url/:shortId', async (req, res) => {
     res.redirect(entry.redirectUrl);
 });
 
-app.listen(PORT, () => {
-    console.log(`Server is connected to PORT ${PORT} Successfully`);
+app.listen(process.env.PORT, () => {
+    console.log(`Server is connected to PORT ${process.env.PORT} Successfully`);
 });
