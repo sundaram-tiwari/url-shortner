@@ -13,7 +13,8 @@ const generateNewShortUrlHandle = async (req, res) => {
     await URL.create({
         shortId: shortID,
         redirectUrl: url,
-        visitHistory: []
+        visitHistory: [],
+        createdBy: req.user._id
     })
 
     return res.render('home',{
