@@ -12,6 +12,19 @@ const userSignupController = async (req, res) => {
             });
         }
 
+        const phonePattern = /^[0-9]{10}$/;
+        if (!phone.match(phonePattern)) {
+            return res.render('signup', {
+                msg: 'Please enter a valid 10-digit phone number'
+            });
+        }
+
+        if (password.length < 6) {
+            return res.render('signup', {
+                msg: 'Password must be at least 6 characters long'
+            });
+        }
+        
         const isMatch = await userModel.findOne({ email });
         if (isMatch) {
             return res.render('signup',{
@@ -41,7 +54,7 @@ const userLoginController = async (req, res) => {
             return res.render('login',{
                 msg:'Please Provide Email and Password'
             });
-        }
+        }   
 
         const user = await userModel.findOne({ email })
         if (!user) {
@@ -60,7 +73,7 @@ const userLoginController = async (req, res) => {
         const sessionId = uuidv4();
         setUser(sessionId, user);
         res.cookie("uid",sessionId);
-        return res.redirect('/');
+        return res.redirect('/home');
 
     } catch (error) {
         console.log(error);

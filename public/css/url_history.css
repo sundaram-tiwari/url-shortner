@@ -67,6 +67,32 @@ td {
     border-bottom: 1px solid #ddd;
 }
 
+.delete-btn{
+    font-size: 20px;
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+    transition: 1s step-start;
+    box-shadow: none;
+    text-align: center;
+}
+ 
+.delete-btn:hover{
+    size: 30px;
+    background-color: #f70d0d;
+    color: #fff;
+}
+
+.trash-can{
+    font-size: 20px;
+    color: #f70d0d;
+    
+}
+
+.trash-can:hover{
+    color: #fff;    
+}
+
 th {
     background-color: #73abff;
     color: #333;

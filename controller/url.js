@@ -4,9 +4,7 @@ const URL = require('../models/urlModel');
 const generateNewShortUrlHandle = async (req, res) => {
     const { url } = req.body;
     if (!url) {
-        return res.status(400).json({
-            error: 'Url is required'
-        })
+        return res.redirect('/home');   
     }
 
     const shortID = shortid();
@@ -17,35 +15,30 @@ const generateNewShortUrlHandle = async (req, res) => {
         createdBy: req.user._id
     })
 
-    return res.render('home',{
-        id: shortID, 
+    return res.render('home', {
+        id: shortID,
     })
 }
 
-const getUrlAnalytics = async (req, res) => {
-    try {
-        const shortId = req.params.shortId;
-        if (!shortId) {
-            return res.status(400).json({
-                error: 'Short Id is required'
-            })
-        }
+const deleteUrlHandle = async (req, res) => {
+    const { shortID } = req.params.shortID;
 
-        const result = await URL.findOne({shortId});
-        return res.status(200).json({
-            totalVisits: result.visitHistory.length,
-            analytics: result.visitHistory
-        })
-    } catch (error) {
-        console.log(error);
-        res.status(500).json({
-            success: false,
-            message: 'Error in get url analytics'
-        })
+    try {
+        const result = await URL.findOneAndDelete({ shortID });
+
+        if (result) {
+            res.status(200).json({ message: 'URL deleted successfully' });
+        } else {
+            res.status(404).json({ message: 'URL not found' });
+        }
+    } catch (error) {   
+        console.log(error)
+        res.status(500).json({ message: 'Error deleting URL' });
     }
-}
+}   
 
 module.exports = {
     generateNewShortUrlHandle,
-    getUrlAnalytics
+    deleteUrlHandle
 }
+

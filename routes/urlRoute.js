@@ -1,10 +1,11 @@
 const express = require('express');
-const { generateNewShortUrlHandle, getUrlAnalytics } = require('../controller/url');
+const { generateNewShortUrlHandle, deleteUrlHandle } = require('../controller/url');
+const { showLoginUserHistoryOnly } = require('../middleware/authMiddleware');
 
 const router = express.Router();
 
-router.post('/',generateNewShortUrlHandle);
+router.post('/',showLoginUserHistoryOnly,generateNewShortUrlHandle);
 
-router.get('/analytics/:shortId',getUrlAnalytics);
+router.delete('/deleteUrl/:shortID',deleteUrlHandle);
 
 module.exports = router;

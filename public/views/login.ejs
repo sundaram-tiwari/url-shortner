@@ -9,16 +9,18 @@
 <body>
     <div class="form">
         <h1>Login</h1>
-        <form action="/user/login" method="post">
+        <form action="/login" method="post">
             <label for="email">Email</label>
-            <input type="text" name="email" placeholder="email">
+            <input type="text" name="email" placeholder="email" id="email">
             <label for="username">Password</label>
-            <input type="text" name="password" placeholder="password">
-            <button type="submit">Login</button>
+            <input type="text" name="password" placeholder="password" id="password">
+            <button type="submit" id="login-btn">Login</button>
+            <a href="/signup">Sign-Up</a>
         </form>
-        <% if (locals.msg) { %>
-            <p class="msg"><%= msg %></p>
-        <% } %>
+            <% if (locals.msg) { %>
+                <p class="msg"><%= msg %></p>
+            <% } %>
+        </p>
     </div>    
 </body>
 </html>

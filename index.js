@@ -4,7 +4,7 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const connectMongoDB = require('./connect');
 const URL = require('./models/urlModel');
-const { showLoginUserHistoryOnly } = require('./middleware/authMiddleware');
+const { checkAuth } = require('./middleware/authMiddleware');
 
 dotenv.config();
 
@@ -20,9 +20,9 @@ app.use(cookieParser());
 
 connectMongoDB();
 
-app.use('/url',showLoginUserHistoryOnly,require('./routes/urlRoute'));
+app.use('/url',checkAuth,require('./routes/urlRoute'));
 app.use('/', require('./routes/staticRouter'));
-app.use('/user',require('./routes/userRoutes'));
+app.use('/',require('./routes/userRoutes'));
 
 app.get('/url/:shortId', async (req, res) => {
     const shortId = req.params.shortId;

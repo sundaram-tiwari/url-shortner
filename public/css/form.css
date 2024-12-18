@@ -63,6 +63,13 @@ p{
     font-size: 14px;
 }
 
+.form a{
+    text-decoration: none;
+    font-size: 15px;
+    text-align: center;
+    padding-top: 5px;
+}
+
 .msg{
     margin-top: 5px;
     color: #555;

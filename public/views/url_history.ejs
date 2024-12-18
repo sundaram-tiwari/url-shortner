@@ -1,42 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <link rel="stylesheet" href="./css/url_history.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Url History</title>
 </head>
+
 <body>
     <h1>URL History</h1>
-            <div>
-                <% if (locals.urls) { %>
-                    <table>
-                        <thead>
-                            <th>Serial No</th>
-                            <th>ShortID</th>
-                            <th>RedirectUrl</th>
-                            <th>Clicks</th>
-                        </thead>
-                        <tbody>
-                            <% urls.forEach((url, index)=> { %>
-                                <tr>
-                                    <td>
-                                        <%= index + 1 %>
-                                    </td>
-                                    <td>
-                                        <%= url.shortId%>
-                                    </td>
-                                    <td>
-                                        <%= url.redirectUrl%>
-                                    </td>
-                                    <td>
-                                        <%= url.visitHistory.length%>
-                                    </td>
-                                </tr>
-                                <% }) %>
-                        </tbody>
-                    </table>
-                    <% } %>
-            </div>
+    <div>
+        <% if (locals.urls) { %>
+            <table>
+                <thead>
+                    <th>Serial No</th>
+                    <th>ShortID</th>
+                    <th>RedirectUrl</th>
+                    <th>Clicks</th>
+                    <th>Delete</th>
+                </thead>
+                <tbody>
+                    <% urls.forEach((url, index)=> { %>
+                        <tr>
+                            <td>
+                                <%= index + 1 %>
+                            </td>
+                            <td>
+                                <%= url.shortId%>
+                            </td>
+                            <td>
+                                <%= url.redirectUrl%>
+                            </td>
+                            <td>
+                                <%= url.visitHistory.length%>
+                            </td>
+                            <td>
+                                <button class="delete-btn" onclick="deleteUrl('<%= url.shortId %>')">
+                                    <i class="fa-regular fa-trash-can trash-can"></i>
+                                </button>
+                            </td>
+                        </tr>
+                        <% }) %>
+                </tbody>
+            </table>
+            <% } %>
+    </div>
+    <script src="../js/urlHandler.js"></script>
 </body>
+
 </html>
