@@ -1,6 +1,6 @@
 function deleteUrl(shortId) {
     if(confirm("Are you sure you want to delete this url")){
-        fetch(`http://localhost:8000/url/deleteUrl/${shortId}`,{
+        fetch(`/url/deleteUrl/${shortId}`,{
             method : 'DELETE',
             headers : {
                 'Content-Type': 'application/json',
