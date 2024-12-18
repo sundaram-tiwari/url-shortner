@@ -11,7 +11,7 @@
 
 <body>
     <h1>URL History</h1>
-    <div>
+    <div class="main-container">
         <% if (locals.urls) { %>
             <table>
                 <thead>
@@ -46,6 +46,9 @@
                 </tbody>
             </table>
             <% } %>
+            <div class="delete-all-container">
+                <button onclick="deleteAllUrl()" class="delete-all-btn">Delete All<i class="fa-regular fa-trash-can"></i></button>
+            </div>
     </div>
     <script src="../js/urlHandler.js"></script>
 </body>

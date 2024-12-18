@@ -4,7 +4,7 @@ const URL = require('../models/urlModel');
 const generateNewShortUrlHandle = async (req, res) => {
     const { url } = req.body;
     if (!url) {
-        return res.redirect('/home');   
+        return res.redirect('/home');
     }
 
     const shortID = shortid();
@@ -27,18 +27,53 @@ const deleteUrlHandle = async (req, res) => {
         const result = await URL.findOneAndDelete({ shortID });
 
         if (result) {
-            res.status(200).json({ message: 'URL deleted successfully' });
+            res.status(200).send({
+                success: true,
+                message: 'URL deleted successfully'
+            });
         } else {
-            res.status(404).json({ message: 'URL not found' });
+            res.status(404).send({
+                success: false,
+                message: 'URL not found'
+            });
         }
-    } catch (error) {   
-        console.log(error)
-        res.status(500).json({ message: 'Error deleting URL' });
+    } catch (error) {
+
+        res.status(500).send({
+            success: false,
+            message: 'Error deleting URL'
+        });
     }
-}   
+}
+
+const deleteAllUrlHandle = async (req, res) => {
+    const createdBy = req.user._id;
+
+    try {
+        const result = await URL.deleteMany({ createdBy });
+
+        if (result) {
+            res.status(200).send({
+                success: true,
+                message: 'URLs deleted successfully'
+            });
+        } else {
+            res.status(404).send({
+                success: false,
+                message: 'URL not found'
+            });
+        }
+    } catch (error) {
+        res.status(500).send({
+            success: false,
+            message: 'Error deleting all url'
+        });
+    }
+}
 
 module.exports = {
     generateNewShortUrlHandle,
-    deleteUrlHandle
+    deleteUrlHandle,
+    deleteAllUrlHandle
 }
 

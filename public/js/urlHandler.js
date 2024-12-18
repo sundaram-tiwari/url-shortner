@@ -8,7 +8,7 @@ function deleteUrl(shortId) {
         })
         .then(response => response.json())
         .then(data =>{
-            if (data.message === 'URL deleted successfully') {
+            if (data.success === true) {
                 alert('URL deleted successfully');
                 location.reload();  
             } else {
@@ -16,8 +16,30 @@ function deleteUrl(shortId) {
             }
         })
         .catch(error => {
-            console.error('Error:', error);
             alert('There was an error deleting the URL.');
         });
+    }
+}
+
+function deleteAllUrl(){
+    if(confirm('Are you sure you wants to delete all urls')){
+        fetch('/url/deleteAllUrl',{
+            method : 'DELETE',
+            headers : {
+                'Content-Type' : 'application/json',
+            }
+        })
+        .then(response => response.json())
+        .then(data =>{
+            if(data.success === true){
+                alert('All urls deleted successfully');
+                location.reload();
+            } else{
+                alert('Error : ' + data.message);
+            }
+        })
+        .catch(error =>{
+            alert("There was an error deleting the URL.")
+        })
     }
 }

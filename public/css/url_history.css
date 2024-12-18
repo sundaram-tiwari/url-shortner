@@ -66,32 +66,90 @@ td {
     text-align: left;
     border-bottom: 1px solid #ddd;
 }
-
-.delete-btn{
-    font-size: 20px;
-    height: 30px;
-    width: 30px;
-    border-radius: 50%;
-    transition: 1s step-start;
-    box-shadow: none;
-    text-align: center;
-}
  
-.delete-btn:hover{
-    size: 30px;
-    background-color: #f70d0d;
-    color: #fff;
+.delete-btn {
+    background-color: #f44336;
+    color: white;
+    border: none; 
+    padding: 10px 15px; 
+    border-radius: 5px;
+    display: inline-flex;
+    align-items: center; 
+    justify-content: center; 
+    cursor: pointer; 
+    transition: all 0.3s ease; 
 }
 
-.trash-can{
-    font-size: 20px;
-    color: #f70d0d;
-    
+
+.delete-btn .trash-can {
+    font-size: 18px; 
+    transition: transform 0.3s ease;
 }
 
-.trash-can:hover{
+.delete-btn:hover {
+    background-color: #e53935; 
+    transform: scale(1.1); 
+}
+
+
+.delete-btn:hover .trash-can {
+    transform: rotate(20deg); 
+}
+
+
+.delete-btn:focus {
+    outline: none; 
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3); 
+}
+
+.delete-btn:disabled {
+    background-color: #e0e0e0;
+    cursor: not-allowed; 
+}
+.delete-all-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.delete-all-btn {
+    background-color: #ff4d4d; 
+    color: white;
+    font-size: 16px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 40px;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.delete-all-btn i {
+    margin-left: 8px;
+}
+
+.delete-all-btn:hover {
+    background-color: #e60000;
+    transform: scale(1.05); 
+}
+
+.delete-all-btn:focus {
+    outline: 2px solid #fff; 
+    outline-offset: 2px;
+}
+
+.delete-all-btn:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+
+/* .trash-can:hover{
     color: #fff;    
-}
+} */
 
 th {
     background-color: #73abff;
