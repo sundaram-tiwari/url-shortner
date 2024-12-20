@@ -38,6 +38,4 @@ app.get('/url/:shortId', async (req, res) => {
     res.redirect(entry.redirectUrl);
 });
 
-app.listen(process.env.PORT, () => {
-    console.log(`Server is connected to PORT ${process.env.PORT} Successfully`);
-});
+app.listen(process.env.PORT);

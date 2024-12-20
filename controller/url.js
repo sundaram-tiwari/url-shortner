@@ -3,21 +3,34 @@ const URL = require('../models/urlModel');
 
 const generateNewShortUrlHandle = async (req, res) => {
     const { url } = req.body;
-    if (!url) {
-        return res.redirect('/home');
+
+    try {
+        if (!url) {
+            return res.status(404).send({
+                success: false,
+                message: "Please provide the url"
+            })
+        }
+
+        const shortID = shortid();
+        await URL.create({
+            shortId: shortID,
+            redirectUrl: url,
+            visitHistory: [],
+            createdBy: req.user._id
+        })
+
+        return res.status(200).send({
+            success: true,
+            message: 'http://localhost:8000/url/' + shortID
+        })
+    } catch (error) {
+        return res.status(500).send({
+            success: false,
+            message: error
+        });
     }
 
-    const shortID = shortid();
-    await URL.create({
-        shortId: shortID,
-        redirectUrl: url,
-        visitHistory: [],
-        createdBy: req.user._id
-    })
-
-    return res.render('home', {
-        id: shortID,
-    })
 }
 
 const deleteUrlHandle = async (req, res) => {

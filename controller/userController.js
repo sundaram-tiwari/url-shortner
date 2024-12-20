@@ -42,7 +42,6 @@ const userSignupController = async (req, res) => {
         });
         return res.redirect('/');
     } catch (error) {
-        console.log(error);
         return res.redirect('/signup');
     }
 }
@@ -76,9 +75,26 @@ const userLoginController = async (req, res) => {
         return res.redirect('/home');
 
     } catch (error) {
-        console.log(error);
-        return res.redirect('/login');
+        return res.redirect('/');
     }
 }
 
-module.exports = { userSignupController, userLoginController };
+const userLogoutController = async (req, res) =>{
+    try {
+        res.clearCookie("uid").send({
+            success:true,
+            message:"You have been logged out successfully"
+        });
+
+    } catch (error) {
+        return res.status(500).send({
+            success: false,
+            message: error
+        });
+    }
+}
+
+module.exports = { userSignupController, 
+    userLoginController,
+    userLogoutController
+};

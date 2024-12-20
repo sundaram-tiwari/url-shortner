@@ -60,7 +60,7 @@ button:hover {
     background-color: #2f5dc0;
 }
 
-.generated-url {
+.url-container{
     background-color: #e0f7fa;
     border: 1px solid #4CAF50;
     color: #2c6e49;
@@ -69,49 +69,28 @@ button:hover {
     font-size: 16px;
     max-width: 600px;
     margin: 20px auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    visibility: hidden;
+    text-align: center;
+}
+.generated-url {
+    background-color: #e0f7fa;
+    border: 1px solid #4CAF50;
+    color: #2c6e49;
+    padding: 20px;
+    width: 75%;
+    border-radius: 8px;
+    font-size: 16px;
+    max-width: 600px;
+    margin: 20px auto;
     text-align: center;
 }
 
-.generated-url a {
-    color: #4CAF50;
-    text-decoration: none;
-    font-weight: bold;
+#copy-btn {
+    width: 20%;
 }
-
-.generated-url a:hover {
-    text-decoration: underline;
-}
-
-.generated-url .icon {
-    margin-right: 10px;
-    vertical-align: middle;
-}
-
-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 30px;
-    background-color: #fff;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-}
-
-th,
-td {
-    padding: 12px;
-    text-align: left;
-    border-bottom: 1px solid #ddd;
-}
-
-th {
-    background-color: #73abff;
-    color: #333;
-    font-weight: bold;
-}
-
-tr:hover {
-    background-color: #f9f9f9;
-}
-
 
 @media (max-width: 600px) {
     form {
