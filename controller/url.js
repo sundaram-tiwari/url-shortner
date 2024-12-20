@@ -22,7 +22,7 @@ const generateNewShortUrlHandle = async (req, res) => {
 
         return res.status(200).send({
             success: true,
-            message: 'http://localhost:8000/url/' + shortID
+            message: `http://localhost:${process.env.PORT}/url/` + shortID
         })
     } catch (error) {
         return res.status(500).send({
