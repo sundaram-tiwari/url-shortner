@@ -13,7 +13,7 @@ const userLogout = () => {
             .then(data => {
                 if (data.success === true) {
                     alert(data.message);
-                    window.location.href = '/login';
+                    window.location.href = '/';
                 } else {
                     alert('Error: ' + data.message);
                 }
