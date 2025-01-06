@@ -10,7 +10,6 @@ function generateUrl() {
     })
         .then(response => response.json())
         .then(data => {
-            console.log(data);
             if (data.success === true) {
                 showUrl.innerHTML = data.message;
                 mainUrl = data.message;
@@ -28,7 +27,6 @@ function generateUrl() {
 function copyUrl() {
     const urlToCopy = document.getElementById('generatedUrl').innerText;
 
-    console.log(urlToCopy)
     if (urlToCopy != "") {
         navigator.clipboard.writeText(urlToCopy)
             .then(() => {
